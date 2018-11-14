@@ -1,0 +1,7 @@
+version: '3'
+services:
+  gamezeug-auth-server:
+    image: 'artun/gamezeug-auth-server'
+    ports:
+     - '8080:8080'
+

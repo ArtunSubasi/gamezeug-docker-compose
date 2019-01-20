@@ -4,6 +4,8 @@ services:
     image: 'artun/gamezeug-auth-server'
     ports:
      - '8080:8080'
+    env_file:
+      - gamezeug-auth-server.env
   gamezeug-tables:
     image: 'artun/gamezeug-tables'
     ports:

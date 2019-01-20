@@ -4,4 +4,8 @@ services:
     image: 'artun/gamezeug-auth-server'
     ports:
      - '8080:8080'
+  gamezeug-tables:
+    image: 'artun/gamezeug-tables'
+    ports:
+      - '4200:4200'
 

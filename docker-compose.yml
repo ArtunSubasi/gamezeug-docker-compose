@@ -14,4 +14,8 @@ services:
     image: 'artun/gamezeug-tables'
     ports:
       - '4200:4200'
+  gamezeug-chat-frontend:
+    image: 'artun/gamezeug-chat-frontend'
+    ports:
+      - '4201:80'
 

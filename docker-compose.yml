@@ -1,21 +1,43 @@
 version: '3'
 services:
-  gamezeug-portal:
-    image: 'artun/gamezeug-portal'
+
+  reverse-proxy:
+    image: 'gamezeug/reverse-proxy'
     ports:
       - '80:80'
-  gamezeug-auth-server:
-    image: 'artun/gamezeug-auth-server'
-    ports:
-     - '8080:8080'
     env_file:
-      - gamezeug-auth-server.env
-  gamezeug-tables:
+      - reverse-proxy/nginx.env
+    networks:
+      - frontend
+
+  portal:
+    image: 'artun/gamezeug-portal'
+    ports:
+      - '8080:80'
+    networks:
+      - frontend
+
+  tables-frontend:
     image: 'artun/gamezeug-tables'
     ports:
-      - '4200:4200'
-  gamezeug-chat-frontend:
+      - '8082:4200'
+    networks:
+      - frontend
+
+  chat-frontend:
     image: 'artun/gamezeug-chat-frontend'
     ports:
-      - '4201:80'
+      - '8083:80'
+    networks:
+      - frontend
 
+  auth-server:
+    image: 'artun/gamezeug-auth-server'
+    ports:
+     - '8081:8080'
+    env_file:
+      - gamezeug-auth-server.env
+
+networks:
+  frontend:
+    driver: bridge
